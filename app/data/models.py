@@ -1,5 +1,6 @@
 """Definition of Models for integration with endpoints."""
 from sqlalchemy import Boolean
+from sqlalchemy import DateTime
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
@@ -82,3 +83,13 @@ class User(Base):
     )
 
     groups = relationship("Group", secondary=user_groups_table, back_populates="users")
+
+
+class QueryLog(Base):
+    """Model for the QueryLog Definition."""
+
+    __tablename__ = "query_log"
+
+    id = Column(Integer, primary_key=True, index=True)
+    query_string = Column(String, nullable=False)
+    created_at = Column(DateTime(timezone=True), nullable=False)

@@ -1,10 +1,5 @@
 """Definition of Create, Read, Update and Delete operations for database operations."""
-from datetime import datetime
-from datetime import timezone
 from typing import List
-
-from sqlalchemy import func
-from sqlalchemy.orm import joinedload
 
 from api import deps
 from data import models
@@ -67,3 +62,18 @@ def get_permissions_by_username(username: str) -> List[models.Permission]:
     )
 
     return user_permissions.union_all(group_permissions)
+
+
+def create_query_log(request: schemas.QueryLog):
+    """ Create a query log."""
+    query_log = models.QueryLog(**request)
+    db.add(query_log)
+    db.commit()
+    db.refresh(query_log)
+    return query_log
+
+
+def get_query_log() -> List[models.QueryLog]:
+    """Get query_log."""
+    return db.query(models.QueryLog).all()
+

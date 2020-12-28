@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.v1.endpoints import auth
+from api.v1.endpoints import auth, restaurant
 from data import models
 from data.database import engine
 
@@ -21,6 +21,7 @@ app.add_middleware(
 )
 
 app.include_router(router=auth.router, tags=["auth"])
+app.include_router(prefix="/api/v1/restaurant", router=restaurant.router, tags=["restaurant"])
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=3000, reload=True)
