@@ -6,7 +6,7 @@ from fastapi import APIRouter, Security
 from api import deps
 from data import schemas
 from services.auth_service import get_current_active_user
-from services.restaurant_service import get_query_log
+from services.restaurant_service import get_query_log, get_nearby_restaurants
 
 db = deps.SessionLocal()
 

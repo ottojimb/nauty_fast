@@ -39,8 +39,9 @@ def __get_permissions() -> Optional[Dict[str, str]]:
     return {permission.code: permission.description for permission in permissions}
 
 
+scopes = {"admin": "Super admin scope", "user": "Normal user scope"}
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token", scopes=__get_permissions())
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token", scopes=scopes)
 
 
 def __verify_password(plain_password, hashed_password):
@@ -192,7 +193,7 @@ async def create_user(raw_user: schemas.UserCreate):
     if not user:
         raise HTTPException(status_code=500, detail="User can't be created")
 
-    await __send_confirmation_email(user.email)
+    # await __send_confirmation_email(user.email)
 
     return user
 
@@ -202,7 +203,7 @@ async def resend_email_confirmation(email_: str):
     user = crud.get_user_by_email(email_)
 
     if user:
-        await __send_confirmation_email(user.email)
+        # await __send_confirmation_email(user.email)
         return True
 
     return False

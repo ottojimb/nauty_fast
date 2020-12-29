@@ -1,5 +1,4 @@
 import json
-import config
 import requests
 
 
@@ -10,7 +9,7 @@ def query_osm(query: str) -> any:
     }
 
     req = requests.post(
-        config.OSM_PROVIDER,
+        "https://lz4.overpass-api.de/api/interpreter",
         data=query,
         headers=req_headers,
     )
