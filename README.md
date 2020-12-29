@@ -4,6 +4,14 @@
 
 This is a simple project to implement a simple URL resolver in fastapi.
 
+## Preview
+
+For a preview of this application, you can view it [in this youtube link](https://youtu.be/jdgxcgDKDZM)
+
+## Documentation
+
+Once the app is running, you can open [http://localhost/docs](http://localhost/docs) and get the API documentation done
+
 ### Prerequisites
 
 To continue the development of this project, you will need
@@ -43,5 +51,3 @@ docker-compose up
 ```
 
 Now you can access to [http://localhost/docs](http://localhost/docs)
-
-For a preview of this application, you can view it [in this youtube link](https://youtu.be/jdgxcgDKDZM)
